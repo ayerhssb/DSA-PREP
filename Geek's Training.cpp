@@ -1,3 +1,35 @@
+//Space Optimization
+
+int maximumPoints(vector<vector<int>>& arr) {
+        
+        vector<int> prev(4,0);
+        
+        prev[0] = max(arr[0][2], arr[0][1]);
+        prev[1] = max(arr[0][2], arr[0][0]);
+        prev[2] = max(arr[0][0], arr[0][1]);
+        prev[3] = max(arr[0][2], max(arr[0][0],arr[0][1]));
+        
+        for(int i=1;i<arr.size();i++){
+            vector<int> temp(4,0);
+            for(int j=0;j<4;j++){
+                temp[j]=0;
+                for(int k=0;k<3;k++){
+                    if(k!=j){
+                        int activity = arr[i][k]+ prev[k];
+                        temp[j] = max(temp[j], activity);
+                    }
+                }
+                
+            }
+            prev=temp;
+        }
+        
+        
+       
+        return prev[3];
+        
+    }
+
 //Tabulation
 int maximumPoints(vector<vector<int>>& arr) {
         vector<vector<int>> dp(arr.size(), vector<int>(arr.size(), -1));
