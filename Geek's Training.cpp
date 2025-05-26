@@ -1,3 +1,33 @@
+//Tabulation
+int maximumPoints(vector<vector<int>>& arr) {
+        vector<vector<int>> dp(arr.size(), vector<int>(arr.size(), -1));
+        
+        dp[0][0] = max(arr[0][2], arr[0][1]);
+        dp[0][1] = max(arr[0][2], arr[0][0]);
+        dp[0][2] = max(arr[0][0], arr[0][1]);
+        dp[0][3] = max(arr[0][2], max(arr[0][0],arr[0][1]));
+        
+        for(int i=1;i<arr.size();i++){
+            for(int j=0;j<4;j++){
+                dp[i][j]=0;
+                
+                for(int k=0;k<3;k++){
+                    if(k!=j){
+                        int activity = arr[i][k]+ dp[i-1][k];
+                        dp[i][j] = max(dp[i][j], activity);
+                    }
+                }
+            }
+        }
+        
+        int maxi=-1e9;
+        for(int i=0;i<2;i++){
+            maxi = max(maxi, dp[arr.size()-1][i]);
+        }
+        return maxi;
+        
+    }
+
 //Memorization
 
 class Solution {
