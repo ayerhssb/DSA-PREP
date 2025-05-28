@@ -1,0 +1,59 @@
+//space optimization
+class Solution {
+  public:
+    int knapSack(vector<int>& val, vector<int>& wt, int c) {
+        int n = val.size();
+        // vector<vector<int>> dp(n, vector<int>(c+1, 0));
+        vector<int> prev(c+1, 0), cur(c+1,0);
+        
+        
+        for(int i=wt[0];i<=c;i++){
+            prev[i] = (i/wt[0])* val[0];
+        }
+        
+        for(int i=1;i<n;i++){
+            for(int j=0;j<=c;j++){
+                int notTake = prev[j];
+                int take=INT_MIN;
+                if(wt[i]<=j){
+                    take =  val[i] + cur[j-wt[i]];
+                }
+                
+                cur[j] = max(take, notTake);
+            }
+            prev=cur;
+        }
+        
+        return prev[c];
+        
+    }
+};
+
+// Tabulation
+
+class Solution {
+  public:
+    int knapSack(vector<int>& val, vector<int>& wt, int c) {
+        int n = val.size();
+        vector<vector<int>> dp(n, vector<int>(c+1, 0));
+        
+        for(int i=wt[0];i<=c;i++){
+            dp[0][i] = (i/wt[0])* val[0];
+        }
+        
+        for(int i=1;i<n;i++){
+            for(int j=0;j<=c;j++){
+                int notTake = dp[i-1][j];
+                int take=INT_MIN;
+                if(wt[i]<=j){
+                    take =  val[i] + dp[i][j-wt[i]];
+                }
+                
+                dp[i][j] = max(take, notTake);
+            }
+        }
+        
+        return dp[n-1][c];
+        
+    }
+};
