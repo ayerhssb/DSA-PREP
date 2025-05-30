@@ -1,3 +1,5 @@
+// 0/1 Knapsack Problem
+
 //Space Optimization
 int knapsack(int w, vector<int> &val, vector<int> &wt) {
         int n=val.size();
@@ -26,6 +28,9 @@ int knapsack(int w, vector<int> &val, vector<int> &wt) {
          
          return prev[w];
     }
+
+
+
 
 //Tabulation
 
@@ -58,6 +63,10 @@ int knapsack(int w, vector<int> &val, vector<int> &wt) {
          
          return dp[n-1][w];
     }
+
+
+
+
 
 //Memoization
 
