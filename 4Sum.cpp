@@ -1,4 +1,4 @@
-//space optimized
+//space optimized approach
 
 class Solution {
 public:
