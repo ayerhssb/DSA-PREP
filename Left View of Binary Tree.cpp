@@ -13,6 +13,30 @@ struct Node
 };
  */
 
+
+//Recursive solution:
+
+class Solution {
+  public:
+    void helper(Node* root, vector<int>& ans, int n){
+        if(!root){return;}
+        if(ans.size()==n){
+            ans.push_back(root->data);
+        }
+        
+        helper(root->left, ans, n+1);
+        helper(root->right, ans,n+1);
+    }
+    vector<int> leftView(Node *root) {
+        // code here
+        vector<int> ans;
+        helper(root,ans,0);
+        return ans;
+    }
+};
+
+//level order
+
 class Solution {
   public:
     vector<int> leftView(Node *root) {
