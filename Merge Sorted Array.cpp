@@ -1,3 +1,21 @@
+
+
+//revision: stl
+
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        if(n==0){return;}
+        int i=0;
+        while(i<n){
+            int temp=nums2[i];
+            nums1[i+m] = temp;
+            i++;
+        }
+        sort(nums1.begin(),nums1.end());
+    }
+};
+
 class Solution {
 public:
     void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
