@@ -1,3 +1,28 @@
+//rev
+
+class Solution {
+  public:
+    vector<int> findTwoElement(vector<int>& arr) {
+        vector<int> ans(2);
+        unordered_map<int,int> mpp;
+        int n=arr.size();
+        for(int i=0;i<n;i++){
+            if(mpp.find(arr[i])!=mpp.end()){
+                ans[0]=arr[i];
+            }
+            mpp[arr[i]]++;
+        }
+        for(int i=1;i<=n;i++){
+            if(mpp.find(i)==mpp.end()){
+                ans[1]=i;
+                break;
+            }
+        }
+        return ans;
+    }
+};
+
+//initial
 class Solution {
   public:
     vector<int> findTwoElement(vector<int>& arr) {
