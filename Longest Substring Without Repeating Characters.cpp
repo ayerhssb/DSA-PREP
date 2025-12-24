@@ -47,3 +47,26 @@ public:
         return maxi;
     }
 };
+
+//Revision 2:
+
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int l=0,r=0,cnt=0,maxi=INT_MIN;
+        unordered_map<char,int> mpp;
+        while(r<s.size()){
+            if(mpp.find(s[r])!=mpp.end()){
+                l=max(l,mpp[s[r]]+1);mpp[s[r]]=r;r++;
+            }
+            else{
+                mpp[s[r]]=r;
+                r++;
+            }
+            cnt=r-l;
+            maxi=max(maxi,cnt);
+        }
+        maxi= (maxi==INT_MIN)?0:maxi;
+        return maxi;
+    }
+};
