@@ -1,3 +1,27 @@
+//rev:
+
+class Solution {
+  public:
+    int kthMissing(vector<int> &arr, int k) {
+        unordered_map<int,int> mpp;
+        int n=arr.size(),cnt=0;
+        for(auto it:arr){
+            mpp[it]++;
+        }
+        for(int i=1;i<=arr[n-1];i++){
+            if(mpp.find(i)==mpp.end()){
+                cnt++;
+            }
+            if(cnt==k){
+                return i;
+            }
+        }
+        // return arr[n-1]+k;        
+        return arr[n-1]+k-cnt;
+    }
+};
+
+
 class Solution {
 public:
     int findKthPositive(vector<int>& arr, int k) {
