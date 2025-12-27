@@ -1,3 +1,29 @@
+//revision:
+
+class Solution {
+public:
+    //use of map instead of vector && use of while loop inside...to check for duplicacy
+    int numberOfSubstrings(string s) {
+        int n=s.size();
+        int l=0,r=0,ans=0;
+        // vector<int> arr(3,0);
+        unordered_map<char,int> mpp;
+        while(r<n){
+            mpp[s[r]]++;
+            while(mpp.size()==3){
+                ans+=(n-r);
+                mpp[s[l]]--;
+                if(mpp[s[l]]==0){mpp.erase(s[l]);}
+                l++;
+            }
+            r++;
+        }
+        return ans;
+    }
+};
+
+
+
 class Solution {
 public:
     int numberOfSubstrings(string s) {
