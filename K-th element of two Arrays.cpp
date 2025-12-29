@@ -1,3 +1,35 @@
+//rev:
+
+class Solution {
+  public:
+    int kthElement(vector<int> &arr, vector<int> &brr, int k) {
+        int a=0, b=0,ans=0;
+        while(k && b<brr.size() && a<arr.size()){
+            if(arr[a]>brr[b]){
+                ans=brr[b];
+                b++;
+            }
+            else{
+                ans=arr[a];
+                a++;
+            }
+            k--;
+        }
+        while(b<brr.size()&&k){
+            ans=brr[b];
+            b++;k--;
+        }
+        while(a<arr.size()&&k){
+            ans=arr[a];
+            a++;k--;
+        }
+        return ans;
+    }
+};
+
+
+
+
 class Solution {
   public:
     int kthElement(vector<int>& nums1, vector<int>& nums2, int k) {
