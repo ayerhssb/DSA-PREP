@@ -1,3 +1,7 @@
+// we can do it in o(1) space also by checking any repeated element in a window of three elements. (have to handle len=4 separately)
+
+
+// o(N/2) space + TC: O(N)
 class Solution {
 public:
     int repeatedNTimes(vector<int>& nums) {
