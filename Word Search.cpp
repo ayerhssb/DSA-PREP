@@ -1,3 +1,38 @@
+//rev:
+class Solution {
+  public:
+    bool helper(vector<vector<char>> &mat, string &word, int x, int y, int wIndex){
+        int wlen=word.size();int n=mat.size(), m=mat[0].size();
+        if(wIndex==wlen){return true;}
+        if(x<0||y<0||x>=n||y>=m){return false;}
+        if(word[wIndex]==mat[x][y]){
+            char temp = mat[x][y];
+            mat[x][y] = '!';
+            
+            bool res= helper(mat,word,x+1,y,wIndex+1)||helper(mat,word,x-1,y,wIndex+1)
+            ||helper(mat,word,x,y+1,wIndex+1)||helper(mat,word,x,y-1,wIndex+1);
+            
+            mat[x][y]=temp;
+            return res;
+        }
+        return false;
+    }
+    bool isWordExist(vector<vector<char>> &mat, string &word) {
+        int wlen=word.size();
+        int n=mat.size(), m=mat[0].size();
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(mat[i][j]==word[0]){
+                    if(helper(mat,word,i,j,0)){return true;}
+                }
+            }
+        }
+        return false;
+    }
+};
+
+
+
 // And also a smart pruning technique is to check the frequency of first and
 // last char of the word in the board, and if the freq of first char is greater
 // than last one, simple reverse the string and find the result
