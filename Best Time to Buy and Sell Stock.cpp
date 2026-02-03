@@ -23,3 +23,19 @@ public:
         return profit;
     }
 };
+
+//rvision 2:
+class Solution {
+  public:
+    int maxProfit(vector<int> &prices) {
+        int buy=prices[0],ans=0;
+        for(int i=0;i<prices.size();i++){
+            ans = max(ans,prices[i]-buy);
+            if(prices[i]<buy){
+                buy=prices[i];
+            }
+        }
+        return ans;
+    }
+};
+
