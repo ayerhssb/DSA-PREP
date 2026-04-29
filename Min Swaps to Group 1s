@@ -1,0 +1,24 @@
+class Solution {
+  public:
+    int minSwaps(vector<int>& arr) {
+        int n=arr.size(), ones=0, ans=INT_MAX;
+        for(int i=0;i<n;i++){
+            if(arr[i]==1){ones++;}
+        }
+        if(ones==0){return -1;}
+        int l=0,r=ones-1, oneinwindow=0, len=0;
+        for(int i=l;i<=r;i++){
+            if(arr[i]==1){oneinwindow++;}
+        }
+        ans=min(ans,ones-oneinwindow);
+        if(arr[l]==1){oneinwindow--;}
+        l++;r++;
+        while(r<n && l<n){
+            if(arr[r]==1){oneinwindow++;}
+            ans=min(ans,ones-oneinwindow);
+            if(arr[l]==1){oneinwindow--;}
+            r++;l++;
+        }
+        return ans;
+    }
+};
