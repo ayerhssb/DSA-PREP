@@ -1,3 +1,27 @@
+//revision::
+
+class Solution {
+  public:
+    void helper(string s, vector<string>& ans, int ind, string& str){
+        if(ind==s.size()){
+            ans.push_back(str);
+            return;
+        }
+        helper(s,ans,ind+1,str);
+        str+=s[ind];
+        helper(s,ans,ind+1,str);
+        str.pop_back();
+    }
+    vector<string> AllPossibleStrings(string s) {
+        vector<string> ans;
+        string str="";
+        helper(s, ans, 0, str);
+        sort(ans.begin(),ans.end());
+        return ans;
+    }
+};
+
+
 #include <bits/stdc++.h>
 using namespace std;
 
