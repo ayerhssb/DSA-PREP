@@ -1,3 +1,67 @@
+//resvision::::
+
+struct Node{
+    Node* links[26] = {nullptr};
+    bool flag;
+    bool iscontain(char ch){
+        return links[ch-'a']!=nullptr;
+    }
+    
+    void put(char ch, Node* node){
+        links[ch-'a'] = node;
+    }
+    Node* get(char ch){
+        return links[ch-'a'];
+    }
+    bool isend(){
+        return flag;
+    }
+    void setend(){
+        flag=true;
+    }
+};
+
+class Solution {
+  private:
+  Node* root;
+  public:
+  
+  Solution(){
+     root = new Node;
+  }
+ 
+    int countSubs(string& s) {
+        int cnt=0;
+        for(int i=0;i<s.size();i++){
+            Node* node = root;
+            for(int j=i;j<s.size();j++){
+                if(!node->iscontain(s[j])){
+                    node->put(s[j],new Node());
+                    cnt++;
+                }
+                node=node->get(s[j]);
+            }
+        }
+        return cnt;
+
+        //USING SET
+        
+        // set<string> st;
+        // for(int i=0;i<s.size();i++){
+        //     string str="";
+        //     for(int j=i;j<s.size();j++){
+        //         str+=s[j];
+        //         st.insert(str);
+        //     }
+        // }
+        // return st.size();
+    }
+};
+
+
+
+
+
 struct Node{
     Node* links[26]={nullptr};
     
