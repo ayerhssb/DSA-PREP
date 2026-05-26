@@ -1,3 +1,65 @@
+//revision::
+
+struct Node{
+    Node* links[2] = {nullptr};
+    bool iscontain(int num){
+        return links[num]!=nullptr;
+    }
+    void put(int num, Node* node){
+        links[num]=node;
+    }
+    Node* get(int num){
+        return links[num];
+    }
+};
+class Solution {
+private: 
+Node* root;
+public:
+    Solution(){
+        root = new Node();
+    }
+    void insert(int num){
+        Node* node=root;
+        for(int i=31;i>=0;i--){
+            int bit = (num >>i)&1;
+            if(!node->iscontain(bit)){
+                node->put(bit, new Node());
+            }
+            node=node->get(bit);
+        }
+    }
+
+    int getMaxXor(int num){
+        Node* node=root;
+        int maxxor=0;
+        for(int i=31;i>=0;i--){
+            int bit = (num >>i)&1;
+            if(node->iscontain(1-bit)){
+                maxxor|=(1<<i);
+                node=node->get(1-bit);
+            }
+            else{
+                node=node->get(bit);
+            }
+        }
+        return maxxor;
+    }
+    int findMaximumXOR(vector<int>& nums) {
+        int ans=0;
+        for(int i=0;i<nums.size();i++){
+            insert(nums[i]);
+        }
+        for(int i=0;i<nums.size();i++){
+            ans=max(ans,getMaxXor(nums[i]));
+        }
+        return ans;
+    }
+};
+
+
+
+
 struct Node{
 public:
     Node* links[2];
