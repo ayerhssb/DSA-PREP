@@ -1,5 +1,33 @@
 // 0/1 Knapsack Problem
 
+//revision: memoization:
+class Solution {
+  public:
+    int helper(int W, vector<int> &val, vector<int> &wt, int idx, vector<vector<int>>& dp){
+        
+        if(idx==val.size()-1){
+            if(wt[idx]<=W){
+                return val[idx];
+            }
+            else{return 0;}
+        }
+        if(dp[idx][W]!=-1){
+            return dp[idx][W];
+        }
+        //not_take
+        int not_take = helper(W, val, wt, idx+1,dp);
+        //take 
+        int take=0;
+        if(wt[idx]<=W){take = val[idx]+helper(W-wt[idx], val, wt, idx+1,dp);}
+        
+        return dp[idx][W]=max(take, not_take);
+    }
+    int knapsack(int W, vector<int> &val, vector<int> &wt) {
+        int n=val.size();
+        vector<vector<int>> dp(n+1, vector<int>(W+1,-1));
+        return helper(W, val, wt,0, dp);
+    }
+};
 
 //revision
 //Space Optimization
