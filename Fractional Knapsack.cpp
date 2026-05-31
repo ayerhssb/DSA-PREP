@@ -1,3 +1,40 @@
+//revision::
+
+
+class Solution {
+  public:
+    double fractionalKnapsack(vector<int>& val, vector<int>& wt, int capacity) {
+        int n=val.size(); vector<pair<double,int>> ratio(n); 
+        for(int i=0;i<n;i++){
+            ratio[i].first=double(val[i])/wt[i];
+            ratio[i].second=i;
+        }
+        
+        
+        
+        sort(ratio.begin(),ratio.end(),[](const auto& a, const auto& b){
+            return a.first>b.first;
+        });
+        double sum=0;
+        for(int i=0;i<ratio.size();i++){
+            int cap = wt[ratio[i].second];
+            double t_val=ratio[i].first * cap;
+            if(capacity>=cap){
+                sum+=t_val;
+                capacity-=cap;
+            }
+            else{
+                sum+=((double)capacity/cap)*t_val;break;
+            }
+        }
+        
+        return sum;
+    }
+};
+
+
+// -------------------------
+
 // class implemented
 /*
 struct Item{
