@@ -1,3 +1,29 @@
+// revision:
+//memoization:
+
+class Solution {
+public:
+    bool helper(vector<int>& nums, int sum, int idx, int subsum, vector<vector<int>>& dp){
+        if(idx==nums.size()){
+            return false;
+        }
+        if(dp[idx][subsum]!=-1){
+            return dp[idx][subsum];
+        }
+        if(idx<nums.size() && subsum== (sum)/2){return true;}
+        return dp[idx][subsum]=helper(nums,sum,idx+1,subsum,dp) || helper(nums, sum, idx+1, subsum - nums[idx],dp);
+    }
+    bool canPartition(vector<int>& nums) {
+        int n=nums.size(),sum=0;
+        for(int i=0;i<n;i++){
+            sum+=nums[i];
+        }
+        if(sum%2){return false;}
+        vector<vector<int>> dp(n+1, vector<int>(sum+1,-1));
+        return helper(nums, sum, 0, sum,dp);
+    }
+};
+
 // Tabulation
 
 class Solution {
