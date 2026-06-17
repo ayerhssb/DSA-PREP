@@ -1,3 +1,7 @@
+
+//This is recursive approach --> it uses extra O(n) stack space. 
+// Better to use iterative approach, start from n=1 and build the string.
+
 #include <bits/stdc++.h>
 using namespace std;
 
