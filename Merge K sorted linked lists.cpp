@@ -1,3 +1,42 @@
+// forgot:
+
+#include <bits/stdc++.h>
+using namespace std;
+/*
+class Node {
+public:
+    int data;
+    Node* next;
+    Node(int data, Node* next) : data(data), next(next) {}
+    Node(int data) : data(data), next(nullptr) {}
+};
+*/
+class solution {
+public:
+    Node* mergeKLists(vector<Node*>& arr) {
+        
+        priority_queue<pair<int, Node*>, vector<pair<int, Node*>>, greater<pair<int, Node*>>> pq;
+        for(int i=0;i<arr.size();i++){
+            if(!arr[i]){continue;}
+            pq.push({arr[i]->data, arr[i]});
+        }
+        Node* dummy= new Node(-1); Node* temp=dummy;
+        while(!pq.empty()){
+            int top_data = pq.top().first;
+            Node* top_val = pq.top().second;
+            pq.pop();
+            Node* newnode = new Node(top_data);
+            temp->next=newnode;
+            temp=newnode;
+            if(top_val->next){
+                pq.push({top_val->next->data , top_val->next});
+            }
+        }
+        return dummy->next;
+    }
+};
+
+
 //revision:
 
 /**
