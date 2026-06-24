@@ -1,3 +1,32 @@
+//rev:
+
+#include<bits/stdc++.h>
+using namespace std;
+
+class solution {
+public:
+    string removeOutermostParentheses(string s) {
+        int n=s.size(), balance=0;
+        string str="";
+        stack<char> st; 
+        for(int i=0;i<n;i++){
+            if(s[i]=='('){
+                if(balance){str+=s[i];}
+                balance++;
+            }
+            else if(s[i]==')'){
+                balance--;
+                if(balance){str+=s[i];}
+            }
+        }
+        return str;
+        
+    }
+
+};
+
+// -------------------------------------------------------
+
 class Solution {
 public:
     string removeOuterParentheses(string s) {
