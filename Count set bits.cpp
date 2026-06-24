@@ -1,3 +1,33 @@
+//rev:
+
+#include<bits/stdc++.h>
+using namespace std;
+
+class solution{
+    public:
+    int countset(int num){
+        int cnt=0;
+        while(num){
+            if(num%2==1){
+                cnt++;
+            }
+            num=num/2;
+        }
+        return cnt;
+    }
+    vector<int> countSetBits(int n) {
+        vector<int> ans;
+        for(int i=0;i<=n;i++){
+            ans.push_back(countset(i));
+        }
+        return ans;
+    }
+};
+
+
+// -------------------------------------------------
+
+
 
 int helper(int n){
     if(n==0){return 0;}
