@@ -1,3 +1,40 @@
+//rev:
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+/*
+class Node {
+public:
+    int data;
+    Node* left;
+    Node* right;
+
+    Node(int data) : data(data), left(nullptr), right(nullptr) {}
+};
+*/
+
+class solution {
+public:
+    Node* helper(Node* root, int target){
+        if(!root){return nullptr;}
+        while(root){
+            if(root->data == target){return root;}
+            else if(target<root->data){root=root->left;}
+            else if(target>root->data){root=root->right;}
+        }
+        return nullptr;
+    }
+    Node* search(Node* root, int target) {
+        if(!root){return nullptr;}
+        return helper(root, target);
+    }
+};
+
+// -----------------------------------------------------------------------
+
+
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
