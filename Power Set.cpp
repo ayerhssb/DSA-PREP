@@ -1,3 +1,28 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class solution {
+public:
+    void helper(int idx, vector<int>& arr, vector<vector<int>>& ans, vector<int>& temp){
+        
+        ans.push_back(temp);
+        
+        for(int i=idx;i<arr.size();i++){
+            temp.push_back(arr[i]);
+            helper(i+1, arr, ans, temp);
+            temp.pop_back();
+        }
+        
+    }
+    vector<vector<int>> powerSet(vector<int>& arr) {
+        vector<vector<int>> ans;
+        vector<int> temp;
+        helper(0, arr, ans, temp);
+        return ans;
+    }
+};
+
+
 //revision::
 
 class Solution {
