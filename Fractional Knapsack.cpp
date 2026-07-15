@@ -1,3 +1,38 @@
+//revision:
+
+#include <bits/stdc++.h>
+using namespace std;
+
+class solution {
+public:
+    double fractionalKnapsack(vector<int>& profits, vector<int>& weights, int capacity) {
+        vector<pair<int,int>> arr;
+        double ans=0;
+        for(int i=0;i<weights.size();i++){
+            arr.push_back({profits[i], weights[i]});
+        }
+        sort(arr.begin(),arr.end(), [&](const pair<int,int> a, pair<int,int> b){
+            return (a.first/double(a.second) > b.first/double(b.second));
+        });
+        
+        for(int i=0;i<arr.size();i++){
+            if(capacity>arr[i].second){
+                ans+= arr[i].first;
+                capacity-=arr[i].second;
+            }
+            else{
+                ans+= ((arr[i].first/(double)arr[i].second) * capacity);
+                break;
+            }
+        }
+        return ans;
+    }
+};
+
+
+// ------------------------------------------------------------------------------------------------
+
+
 //revision::
 
 
