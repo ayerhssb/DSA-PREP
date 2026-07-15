@@ -1,3 +1,52 @@
+//revision:
+
+#include <bits/stdc++.h>
+using namespace std;
+
+class solution {
+   public:
+    vector<int> spiralTraversal(vector<vector<int>>& matrix) {
+        vector<int> ans;
+        int n = matrix.size(), m = matrix[0].size();
+        int colstart = 0, colend = m - 1, rowstart = 0, rowend = n - 1, rev=0;
+        while (colstart < m && colend >= 0 && rowstart < n && rowend >= 0) {
+            if (rev) {
+                for (int i = colend; i >= colstart; i--) {
+                    ans.push_back(matrix[rowend][i]);
+                }
+                rowend--;
+            } else {
+                for (int i = colstart; i <= colend; i++) {
+                    ans.push_back(matrix[rowstart][i]);
+                }
+                rowstart++;
+            }
+            if (rev) {
+                for (int i = rowend; i >= rowstart; i--) {
+                    ans.push_back(matrix[i][colstart]);
+                }
+                colstart++;
+                rev=0;
+            } else {
+                for (int i = rowstart; i <= rowend; i++) {
+                    ans.push_back(matrix[i][colend]);
+                }
+                colend--;
+                rev=1;
+            }
+        }
+        return ans;
+        // 0--m-1 col
+        // 1--n-1 row
+        // m-2--0 col
+        // n-2--1 row
+    }
+};
+
+//---------------------------------------------------------------------------------------------------------
+
+
+
 class Solution {
   public:
     vector<int> spirallyTraverse(vector<vector<int> > &mat) {
