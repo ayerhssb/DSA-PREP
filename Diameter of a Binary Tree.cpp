@@ -1,3 +1,38 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+/*class Node {
+public:
+    int data;
+    Node* left;
+    Node* right;
+
+    Node(int value) : data(value), left(nullptr), right(nullptr) {}
+};*/
+
+class solution{
+public:
+    int helper(Node* root, int &dia){
+        if(!root){
+            return 0;
+        }
+        int left= helper(root->left, dia);
+        int right = helper(root-> right, dia);
+        dia = max(dia, left+right);
+        return 1+ max(left, right);
+    }
+    int diameterOfBinaryTree(Node* root){
+        int dia=0;
+        helper(root, dia);
+        return dia;
+    }
+};
+
+
+// ---------------------------------------------------------------------------------------------
+
+
+
 /*class Node {
 public:
     int data;
