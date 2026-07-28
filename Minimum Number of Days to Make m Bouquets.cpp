@@ -1,3 +1,49 @@
+//rev:
+
+#include <bits/stdc++.h>
+using namespace std;
+
+class solution{
+public:
+    bool canmake(int mid, int arr[], int m,int k, int n){
+        int bouquet=0, flower=0;
+        for(int i=0;i<n;i++){
+            if(arr[i]<=mid){
+                flower++;
+            }
+            else{
+                flower=0;
+            }
+            if(flower==k){bouquet++;flower=0;}
+            
+        }
+        return bouquet>=m;
+    }
+    int bouquetFormation(int arr[], int n, int k, int m){
+        if(n<k*m){
+            return -1;
+        }
+        int maxday=INT_MIN;
+        for(int i=0;i<n;i++){
+            maxday=max(maxday, arr[i]);
+        }
+        
+        int low=1, high=maxday;
+        while(low<=high){
+            int mid = (low+high)>>1;
+            if(canmake(mid, arr, m, k,n)){
+                high=mid-1;
+            }
+            else{
+                low=mid+1;
+            }
+        }
+        
+        return low;
+    }
+};
+
+
 class Solution {
 public:
     pair<int,int> El(vector<int>& bloomDay){
