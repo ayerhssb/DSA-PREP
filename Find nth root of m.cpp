@@ -1,4 +1,44 @@
-lass Solution {
+
+//rev:
+
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+class solution{
+public:
+    ll power(int mid, int n, int m){
+        ll ans=1;
+        for(int i=0;i<n;i++){
+            ans=ans*mid;
+            
+            if(ans > m){return m+1;}
+        }
+        return ans;
+    }
+    int findNthrootofM (int n, int m){
+        int l=1, h=(m/n);
+        while(l<=h){
+            ll mid= l+ (h-l)/2;
+            if(power(mid, n,m) == m){
+                return mid;
+            }
+            if(power(mid,n,m)>m){
+                h = mid-1;
+            }
+            else{
+                l = mid+1;
+            }
+        }
+        return -1;
+    }
+};
+
+
+// ----------------------------------------------------------------------------------------
+
+
+
+class Solution {
   public:
   int fn(int mid, int n){
       return pow(mid,n);
